@@ -1,0 +1,11 @@
+[Unit]
+Description=Image segmentation (background removal) microservice
+
+[Service]
+Type=forking
+PIDFile=<path to pidfile>
+ExecStart=<path to python executable> <path to denoiser repo>/src/segmenter_microservice.py start --json <path to JSON configuration file> --server threaded
+ExecStop=<path to python executable> <path to denoiser repo>/src/segmenter_microservice.py stop --json <path to JSON configuration file>
+
+[Install]
+WantedBy=multi-user.target

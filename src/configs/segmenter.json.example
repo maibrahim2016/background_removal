@@ -1,0 +1,66 @@
+{
+    "daemonize": true,
+
+    "input_name": "image",
+    "output_name": "classes",
+
+    "max_receive_message_length": -1,
+    "max_send_message_length": -1,
+
+    "model_name": "segmenter",
+    "model_server_host": "localhost",
+    "model_server_port": 8500,
+    "request_timeout": 30,
+    "signature_name": "serving_default",
+
+    "max_image_size": 1080,
+    "resizing_interpolation": 1,
+    "mask_interpolation": 3,
+    "mask_true_value": 255,
+
+    "pidfile": "/path/to/pidfile",
+    "port": 7123,
+
+    "stdout": "/path/to/stdout",
+    "stderr": "/path/to/stderr",
+
+    "logname": "segmenter",
+    "logging": {
+        "version": 1,
+        "disable_existing_loggers": false,
+        "formatters": {
+            "standard": {
+                "format": "%(asctime)s - %(process)d [%(levelname)s] (%(name)s) %(message)s"
+            }
+        },
+        "handlers": {
+            "info": {
+                "class": "logging.FileHandler",
+                "level": "INFO",
+                "formatter": "standard",
+                "filename": "/path/to/info-log",
+                "encoding": "utf-8"
+            },
+            "error": {
+                "class": "logging.FileHandler",
+                "level": "ERROR",
+                "formatter": "standard",
+                "filename": "/path/to/error-log",
+                "encoding": "utf-8"
+            },
+            "console-stream": {
+                "class": "logging.StreamHandler",
+                "level": "DEBUG",
+                "formatter": "standard",
+                "stream": "ext://sys.stdout"
+            }
+        },
+        "loggers": {
+            "segmenter": {
+                "level": "DEBUG",
+                "handlers": ["info", "error", "console-stream"],
+                "propagate": false
+            }
+        }
+    }
+}
